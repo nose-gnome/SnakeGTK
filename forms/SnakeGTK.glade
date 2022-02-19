@@ -44,13 +44,11 @@
         </child>
         <child>
           <!-- n-columns=12 n-rows=12 -->
-          <object class="GtkGrid" id="Grid">
+          <object class="GtkGrid" id="SnakeGrid">
             <property name="width-request">600</property>
             <property name="height-request">600</property>
             <property name="visible">True</property>
             <property name="can-focus">False</property>
-            <property name="halign">baseline</property>
-            <property name="valign">baseline</property>
             <property name="row-homogeneous">True</property>
             <property name="column-homogeneous">True</property>
             <child>

@@ -3,7 +3,7 @@ project(SnakeGTK VERSION 1.0)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
 
-set(SOURCE_FILES main.cpp src/App.cpp include/App.h src/MainMenu.cpp include/MainMenu.h src/MainProcess.cpp include/MainProcess.h src/Game.cpp include/Game.h src/Grid.cpp include/Grid.h)
+set(SOURCE_FILES main.cpp src/App.cpp include/App.h src/MainMenu.cpp include/MainMenu.h src/MainProcess.cpp include/MainProcess.h src/Game.cpp include/Game.h src/Grid.cpp include/Grid.h src/Tile.cpp include/Tile.h src/Snake.cpp include/Snake.h)
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 
 

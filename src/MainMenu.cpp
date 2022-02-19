@@ -17,7 +17,7 @@ MainMenu::MainMenu(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder> &re
 }
 
 void MainMenu::playButtPress() {
-//    app->gotoGame();
+    app->gotoGame(true);
 }
 
 MainMenu *MainMenu::getInstance(MainProcess * app) {

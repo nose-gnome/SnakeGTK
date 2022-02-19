@@ -8,15 +8,20 @@
 
 #include <MainProcess.h>
 #include <gtkmm.h>
+#include <Grid.h>
+
 class Game: public Gtk::Window {
 public:
     Game(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refGlade, MainProcess * app);
+
+    Game(_GtkWindow *pWindow, Glib::RefPtr<Gtk::Builder> refPtr);
 
     static Game * getInstance(MainProcess *app);
 
     virtual ~Game();
 
 private:
+    Grid *grid;
     MainProcess *app;
 
 };

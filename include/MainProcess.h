@@ -13,11 +13,13 @@ public:
     static Glib::RefPtr<MainProcess> create();
 
 
-    void gotoMainMenu();
-    void gotoMainMenu(bool hideGame);
+    virtual void gotoMainMenu();
 
-    void gotoGame();
-    void gotoGame(bool hideMenu);
+    virtual void gotoMainMenu(bool hideGame);
+
+    virtual void gotoGame();
+
+    virtual void gotoGame(bool hideMenu);
 
     Glib::RefPtr<Gtk::Builder> builder;
 
