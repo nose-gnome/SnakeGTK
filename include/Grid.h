@@ -14,11 +14,11 @@
 #include <cairomm/context.h>
 #include <giomm/resource.h>
 
-#include <iostream>
-#include <Tile.h>
+#include <array>
+//#include <Tile.h>
 #include <Snake.h>
 
-class Grid: public Gtk::Grid {
+class Grid: public Gtk::DrawingArea {
 public:
 //    Grid();
     Grid(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder> &refGlade, MainProcess *app);
@@ -26,16 +26,19 @@ public:
 
     void changeState();
 
+
     ~Grid();
 
 protected:
     Snake *snake;
 //    Tile chunks[7];
-//    virtual bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr);
+    virtual bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr);
 
 private:
     Tile * tiles[12][12];
     MainProcess *app;
+
+    void draw_grid(const Cairo::RefPtr<Cairo::Context>& cr);
 
 };
 

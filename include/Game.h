@@ -9,6 +9,7 @@
 #include <MainProcess.h>
 #include <gtkmm.h>
 #include <Grid.h>
+#include <Direction.h>
 
 class Game: public Gtk::Window {
 public:
@@ -16,11 +17,19 @@ public:
 
     Game(_GtkWindow *pWindow, Glib::RefPtr<Gtk::Builder> refPtr);
 
+    void hide();
+    void show();
+
     static Game * getInstance(MainProcess *app);
 
     virtual ~Game();
 
+
 private:
+    bool on_key_press_event(GdkEventKey* event) override;
+
+    bool on_timeout();
+    bool visible = false;
     Grid *grid;
     MainProcess *app;
 

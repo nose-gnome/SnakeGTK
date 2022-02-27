@@ -4,10 +4,12 @@
 #include <Game.h>
 
 Game::Game(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder> &refGlade, MainProcess *app): Gtk::Window(cobject) {
+//    this->signal_key_press_event().connect(sigc::mem_fun(*this, &Game::on_key_press));
+    add_events(Gdk::KEY_PRESS_MASK);
     this->app = app;
     grid = Grid::getInstance(app);
-
-
+    Glib::signal_timeout().connect(sigc::mem_fun(*this, &Game::on_timeout), 1);
+//    Glib::signal_timeout(sigc::mem_fun(this, &Game::on_timeout), 1000);
 }
 
 Game *Game::getInstance(MainProcess *app) {
@@ -15,6 +17,40 @@ Game *Game::getInstance(MainProcess *app) {
     app->builder->get_widget_derived("Game", result, app);
     return result;
 }
+void Game::hide() {
+    visible=false;
+    this->Gtk::Window::hide();
+}
+bool Game::on_key_press_event(GdkEventKey *event) {
+    switch (event->keyval) {
+        case GDK_KEY_w:
+        case GDK_KEY_W:
+        case GDK_KEY_Up:
+            std::cout << "NORTH" << std::endl;
+            break;
+        case GDK_KEY_d:
+        case GDK_KEY_D:
+        case GDK_KEY_Right:
+            std::cout << "EAST" << std::endl;
+            break;
+        case GDK_KEY_s:
+        case GDK_KEY_S:
+        case GDK_KEY_Down:
+            std::cout << "SOUTH" << std::endl;
+            break;
+        case GDK_KEY_a:
+        case GDK_KEY_A:
+        case GDK_KEY_Left:
+            std::cout << "WEST" << std::endl;
+            break;
+    }return true;
+}
+
+void Game::show() {
+    visible=true;
+    this->Gtk::Window::show();
+}
+
 
 Game::~Game() {
 
@@ -23,3 +59,19 @@ Game::~Game() {
 Game::Game(_GtkWindow *pWindow, Glib::RefPtr<Gtk::Builder> refPtr) {
 
 }
+
+bool Game::on_timeout() {
+    auto win = get_window();
+    if (visible) {
+        if (win) {}
+
+        {
+            Gdk::Rectangle r(0, 0, get_allocation().get_width(),
+                             get_allocation().get_height());
+            win->invalidate_rect(r, false);
+        }
+
+    }
+    return true;
+}
+
