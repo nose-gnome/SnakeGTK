@@ -8,7 +8,7 @@ Game::Game(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder> &refGlade, 
     add_events(Gdk::KEY_PRESS_MASK);
     this->app = app;
     grid = Grid::getInstance(app);
-    Glib::signal_timeout().connect(sigc::mem_fun(*this, &Game::on_timeout), 1);
+    Glib::signal_timeout().connect(sigc::mem_fun(*this, &Game::on_timeout), 2);
 //    Glib::signal_timeout(sigc::mem_fun(this, &Game::on_timeout), 1000);
 }
 
@@ -22,28 +22,32 @@ void Game::hide() {
     this->Gtk::Window::hide();
 }
 bool Game::on_key_press_event(GdkEventKey *event) {
+    Direction direction;
     switch (event->keyval) {
         case GDK_KEY_w:
         case GDK_KEY_W:
         case GDK_KEY_Up:
-            std::cout << "NORTH" << std::endl;
+            direction = NORTH;
             break;
         case GDK_KEY_d:
         case GDK_KEY_D:
         case GDK_KEY_Right:
-            std::cout << "EAST" << std::endl;
+            direction = EAST;
             break;
         case GDK_KEY_s:
         case GDK_KEY_S:
         case GDK_KEY_Down:
-            std::cout << "SOUTH" << std::endl;
+            direction = SOUTH;
             break;
         case GDK_KEY_a:
         case GDK_KEY_A:
         case GDK_KEY_Left:
-            std::cout << "WEST" << std::endl;
+            direction = WEST;
             break;
-    }return true;
+    }
+
+    grid->snake->setDirection(direction);
+    return true;
 }
 
 void Game::show() {

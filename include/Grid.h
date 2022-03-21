@@ -28,9 +28,9 @@ public:
 
 
     ~Grid();
-
-protected:
     Snake *snake;
+protected:
+
 //    Tile chunks[7];
     virtual bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr);
 
