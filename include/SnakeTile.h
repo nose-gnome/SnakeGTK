@@ -25,6 +25,8 @@ protected:
 
 private:
     int getCoord();
+    int getCoord(Direction direction1);
+    SnakeTile * nextChunk;;
     SnakeBase *snake;
     SnakeTile **snakeTiles;
     void changeDirection(Direction direction1);

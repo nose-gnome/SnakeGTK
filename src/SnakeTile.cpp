@@ -7,6 +7,7 @@
 
 SnakeTile::SnakeTile(SnakeBase *parent, Direction direction, int chunkNum, SnakeTile *snakeTiles[144], std::array<int,2> coordinates, int buffer) {
     snake = parent;
+    if (chunkNum >0)nextChunk=*(snakeTiles+(chunkNum-1));
     this->chunkNum = chunkNum;
     this->direction =direction;
     this->prevDirection = direction;
@@ -20,6 +21,7 @@ SnakeTile::SnakeTile(SnakeBase *parent, Direction direction, int chunkNum, Snake
 }
 
 void SnakeTile::move() {
+//    return;
     float whole, fractional;
     float decCoord = (float) pcoords[getCoord()] /20;
     fractional = std::modf(decCoord, &whole);
@@ -30,12 +32,18 @@ void SnakeTile::move() {
             buffer --;
 
         } else {
+//            if ((fractional == 0.5) && (getCoord() == nextChunk->getCoord()) && ()) changeDirection(nextChunk->direction);
+//            if (fractional == 0.4) changeDirection(nextChunk->direction);
+            if (fractional == 0.5 ) {
+//                if ((nextChunk->prevDirection == direction)) {
+//                }
+                changeDirection((Direction)nextChunk->prevDirection);
+                const int check = 3;
+                if (chunkNum >= check){
+                    printf("here\n");
+                }
 
-            if (fractional == 0.5) {
-                const int index = chunkNum-1;
-                SnakeTile *nextChunk = *(snakeTiles+index);
 
-                if (nextChunk->direction != direction) changeDirection(nextChunk->direction);
             }
 
             move(this->direction);
@@ -46,7 +54,8 @@ void SnakeTile::move() {
             changeDirection(this->snake->getDirection());
 
         }
-//            std::cout << fractional << std::endl;
+
+        //            std::cout << fractional << std::endl;
         move(this->direction);
     }
 }
@@ -56,9 +65,10 @@ void SnakeTile::changeDirection(Direction direction1) {
     this->direction = direction1;
 }
 
-int SnakeTile::getCoord(){
+int SnakeTile::getCoord() {getCoord(direction);}
+int SnakeTile::getCoord(Direction direction1){
     int out;
-    switch(direction){
+    switch(direction1){
         case EAST:
         case WEST:
             out = 0;break;
@@ -68,6 +78,8 @@ int SnakeTile::getCoord(){
     }
     return out;
 }
+
+
 
 void SnakeTile::move(Direction direction1) {
     const int *new_val = mod_coord(direction1);
@@ -98,6 +110,9 @@ int *SnakeTile::mod_coord(Direction direction1, int amount) {
 }
 
 void SnakeTile::redraw(const Cairo::RefPtr<Cairo::Context> &cr) {
+//    if (chunkNum == 0){
+//        printf("here\n");
+//    }
     cr->line_to(pcoords[0],pcoords[1]);
     if (direction != prevDirection)cr->line_to((int) (pcoords[0]/20*20),(int) (pcoords[1]/20)*20);
 //        int whole[2] = {(int)(float) pcoords[0]/20, (int)(float) pcoords[1]/20, };

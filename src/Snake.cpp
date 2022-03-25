@@ -103,7 +103,7 @@ void Snake::re_draw(const Cairo::RefPtr<Cairo::Context> &cr) {
     cr->set_source_rgb(0,1,0);
     cr->set_line_width(15);
     int length;
-    for(int i=1;occupied[i]!=nullptr;i++){
+    for(int i=0;occupied[i]!=nullptr;i++){
         if(occupied[i]== nullptr){
             length = i-1;
             break;
