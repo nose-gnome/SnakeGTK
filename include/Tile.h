@@ -6,7 +6,7 @@
 #define SNAKEGTK_TILE_H
 #include <gtkmm/drawingarea.h>
 #include <gtkmm/builder.h>
-#include <cairo/cairo.h>
+#include <cairo.h>
 
 class Tile {
 public:
