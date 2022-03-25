@@ -99,7 +99,7 @@ void Snake::re_draw(const Cairo::RefPtr<Cairo::Context> &cr) {
     cr->save();
 //    const int size = *(&occupied+1)-occupied-1;
     cr->move_to(occupied[0]->pcoords[0],occupied[0]->pcoords[1]);
-    const int size = sizeof(occupied)/sizeof(occupied[0]);
+//    const int size = sizeof(occupied)/sizeof(occupied[0]);
     cr->set_source_rgb(0,1,0);
     cr->set_line_width(15);
     int length;

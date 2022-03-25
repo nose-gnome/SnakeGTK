@@ -101,14 +101,15 @@ int *SnakeTile::mod_coord(Direction direction1, int amount) {
 
 void SnakeTile::redraw(const Cairo::RefPtr<Cairo::Context> &cr) {
     cr->line_to(pcoords[0],pcoords[1]);
-    if (direction != prevDirection){
-        float whole[2], fractional[2];
-        fractional[0] = std::modf((float) pcoords[0] /20, &whole[0]);
-        fractional[1] = std::modf((float) pcoords[1] /20, &whole[1]);
+    if (direction != prevDirection)cr->line_to((int) (pcoords[0]/20*20),(int) (pcoords[0]/20)*20);
+//        int whole[2] = {(int)(float) pcoords[0]/20, (int)(float) pcoords[1]/20, };
+//        float whole[2], fractional[2];
+//        fractional[0] = std::modf((float) pcoords[0] /20, &whole[0]);
+//        fractional[1] = std::modf((float) pcoords[1] /20, &whole[1]);
 
-        cr->line_to(whole[0]*20,whole[1]*20);
-    }
-    const int *mod = mod_coord(direction, -19);
+
+//    }
+//    const int *mod = mod_coord(direction, -19);
 //    std::cout << *mod << "|" << *(mod+1) << std::endl;
 //    cr->line_to(*mod, *(mod+1));
 }
