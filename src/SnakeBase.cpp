@@ -22,6 +22,7 @@ void SnakeBase::re_draw(const Cairo::RefPtr <Cairo::Context> &cr) {
 }
 
 bool SnakeBase::setDirection(Direction direction) {
+    return true;
 
 }
 

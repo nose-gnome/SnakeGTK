@@ -44,6 +44,9 @@ bool Game::on_key_press_event(GdkEventKey *event) {
         case GDK_KEY_Left:
             direction = WEST;
             break;
+
+        default:
+            return false;
     }
 
     grid->snake->setDirection(direction);

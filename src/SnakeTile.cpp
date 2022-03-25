@@ -35,9 +35,7 @@ void SnakeTile::move() {
                 const int index = chunkNum-1;
                 SnakeTile *nextChunk = *(snakeTiles+index);
 
-                if (nextChunk->direction != direction) {
-                    changeDirection(nextChunk->direction);
-                }
+                if (nextChunk->direction != direction) changeDirection(nextChunk->direction);
             }
 
             move(this->direction);
@@ -85,23 +83,23 @@ int *SnakeTile::mod_coord(Direction direction1, int amount) {
     static int out[2] = {pcoords[0], pcoords[1]};
     switch (direction1){
         case NORTH:
-            out[1] = pcoords[1] - amount;
+            out[1] = pcoords[1] - 2;
             break;
         case EAST:
-            out[0] = pcoords[0] + amount;
+            out[0] = pcoords[0] + 2;
             break;
         case SOUTH:
-            out[1] = pcoords[1] + amount;
+            out[1] = pcoords[1] + 2;
             break;
         case WEST:
-            out[0] = pcoords[0] - amount;
+            out[0] = pcoords[0] - 2;
     }
     return out;
 }
 
 void SnakeTile::redraw(const Cairo::RefPtr<Cairo::Context> &cr) {
     cr->line_to(pcoords[0],pcoords[1]);
-    if (direction != prevDirection)cr->line_to((int) (pcoords[0]/20*20),(int) (pcoords[0]/20)*20);
+    if (direction != prevDirection)cr->line_to((int) (pcoords[0]/20*20),(int) (pcoords[1]/20)*20);
 //        int whole[2] = {(int)(float) pcoords[0]/20, (int)(float) pcoords[1]/20, };
 //        float whole[2], fractional[2];
 //        fractional[0] = std::modf((float) pcoords[0] /20, &whole[0]);
