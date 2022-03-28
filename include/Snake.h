@@ -26,6 +26,8 @@ public:
     bool setDirection(Direction direction);
     Direction getDirection();
 
+    void getCoords();
+
     virtual ~Snake();
 protected:
 

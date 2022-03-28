@@ -45,11 +45,16 @@ bool Game::on_key_press_event(GdkEventKey *event) {
             direction = WEST;
             break;
 
+        case GDK_KEY_slash:
+            grid->snake->getCoords();
+            break;
+
         default:
             return false;
     }
 
     grid->snake->setDirection(direction);
+    printf("Turned\n");
     return true;
 }
 

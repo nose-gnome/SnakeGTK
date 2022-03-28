@@ -7,6 +7,7 @@
 Snake::Snake(int startChunks, Direction direction): Snake({4,6}, startChunks, direction){
 
 }
+
 Snake::Snake(std::array<int, 2> startPos, int startChunks, Direction direction): SnakeBase() {
     this->facing[0]=getDirectPtr(direction);this->facing[1]=nullptr;
     lastDirection=NULL;
@@ -37,7 +38,15 @@ Snake::Snake(std::array<int, 2> startPos, int startChunks, Direction direction):
 //    for()
 }
 
+void Snake::getCoords() {
+//    return;
+    printf("--------\n");
+    for(int i=0;occupied[i]!= nullptr;i++){
+        printf("[%d, %d]\n",div(occupied[i]->pcoords[0], 20).quot, div(occupied[i]->pcoords[1], 20).quot);
+    }
 
+    return;
+}
 
 bool Snake::setDirection(Direction direction){
     Direction *directionPtr = getDirectPtr(direction);
@@ -116,6 +125,7 @@ void Snake::re_draw(const Cairo::RefPtr<Cairo::Context> &cr) {
     }
     cr->stroke();
     cr->restore();
+//    getCoords();
 }
 
 Snake::~Snake(){}

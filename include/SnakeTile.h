@@ -8,13 +8,16 @@
 #include <array>
 #include <SnakeBase.h>
 #include <iostream>
-#include <cmath>
+#include <cstdlib>
 #include <limits>
-
+struct Coords {
+    int x,y;
+};
 class SnakeTile {
 public:
     SnakeTile(SnakeBase *parent, Direction direction, int chunkNum, SnakeTile *snakeTiles[144], std::array<int,2> coordinates, int buffer=0);
     void move();
+
     void redraw(const Cairo::RefPtr<Cairo::Context> &cr);
     int coordinates[2];
     Direction direction;
@@ -32,8 +35,8 @@ private:
     void changeDirection(Direction direction1);
     int buffer;
     void move(Direction direction1);
-    int *mod_coord(Direction direction1);
-    int *mod_coord(Direction direction1, int amount);
+    Coords mod_coord(Direction direction1);
+    Coords mod_coord(Direction direction1, int amount);
 
     const int distance = 2;
 };
