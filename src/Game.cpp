@@ -8,7 +8,7 @@ Game::Game(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder> &refGlade, 
     add_events(Gdk::KEY_PRESS_MASK);
     this->app = app;
     grid = Grid::getInstance(app);
-    Glib::signal_timeout().connect(sigc::mem_fun(*this, &Game::on_timeout), 2);
+    Glib::signal_timeout().connect(sigc::mem_fun(*this, &Game::on_timeout), 25);
 //    Glib::signal_timeout(sigc::mem_fun(this, &Game::on_timeout), 1000);
 }
 
@@ -49,12 +49,16 @@ bool Game::on_key_press_event(GdkEventKey *event) {
             grid->snake->getCoords();
             break;
 
+        case GDK_KEY_comma:
+            grid->generateApple();
+            break;
+
         default:
             return false;
     }
 
     grid->snake->setDirection(direction);
-    printf("Turned\n");
+//    printf("Turned\n");
     return true;
 }
 

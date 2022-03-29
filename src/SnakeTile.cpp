@@ -87,18 +87,18 @@ int SnakeTile::getCoord(Direction direction1){
 
 
 void SnakeTile::move(Direction direction1) {
-    const Coords new_val = mod_coord(direction1);
+    const Coordinates new_val = mod_coord(direction1);
     pcoords[0] = new_val.x;
     pcoords[1] = new_val.y;
 }
 
-Coords SnakeTile::mod_coord(Direction direction1){
+Coordinates SnakeTile::mod_coord(Direction direction1){
     return mod_coord(direction1, this->distance);
 }
 
-Coords SnakeTile::mod_coord(Direction direction1, int amount) {
+Coordinates SnakeTile::mod_coord(Direction direction1, int amount) {
 
-    Coords out = {pcoords[0], pcoords[1]};
+    Coordinates out = {pcoords[0], pcoords[1]};
     switch (direction1){
         case NORTH:
             out.y = pcoords[1] - amount;

@@ -10,12 +10,11 @@
 #include <iostream>
 #include <cstdlib>
 #include <limits>
-struct Coords {
-    int x,y;
-};
+#include <Coordinates.h>
+
 class SnakeTile {
 public:
-    SnakeTile(SnakeBase *parent, Direction direction, int chunkNum, SnakeTile *snakeTiles[144], std::array<int,2> coordinates, int buffer=0);
+    SnakeTile(SnakeBase *parent, Direction direction, int chunkNum, SnakeTile *snakeTiles[1600], std::array<int,2> coordinates, int buffer=0);
     void move();
 
     void redraw(const Cairo::RefPtr<Cairo::Context> &cr);
@@ -35,10 +34,10 @@ private:
     void changeDirection(Direction direction1);
     int buffer;
     void move(Direction direction1);
-    Coords mod_coord(Direction direction1);
-    Coords mod_coord(Direction direction1, int amount);
+    Coordinates mod_coord(Direction direction1);
+    Coordinates  mod_coord(Direction direction1, int amount);
 
-    const int distance = 2;
+    const int distance = 5;
 };
 
 

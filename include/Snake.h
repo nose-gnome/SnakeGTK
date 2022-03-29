@@ -19,7 +19,7 @@ public:
     void move();
     void re_draw(const Cairo::RefPtr<Cairo::Context> &cr);
 
-    SnakeTile *occupied[144];
+    SnakeTile *occupied[1600];
     int (*head)[2];
     int (*tail)[2];
 

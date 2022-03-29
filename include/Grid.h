@@ -13,10 +13,18 @@
 #include <glibmm/fileutils.h>
 #include <cairomm/context.h>
 #include <giomm/resource.h>
+#include <stdlib.h>
+#include <Coordinates.h>
 
 #include <array>
 //#include <Tile.h>
 #include <Snake.h>
+
+struct Apple {
+    Coordinates r;
+    Coordinates p;
+    Coordinates p2;
+};
 
 class Grid: public Gtk::DrawingArea {
 public:
@@ -25,16 +33,19 @@ public:
     static Grid* getInstance(MainProcess *app);
 
     void changeState();
-
+    bool eatApple();
+    bool generateApple();
 
     ~Grid();
     Snake *snake;
 protected:
 
 //    Tile chunks[7];
+    Apple apple;
     virtual bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr);
 
 private:
+    void draw_apple(const Cairo::RefPtr<Cairo::Context>& cr);
     Tile * tiles[12][12];
     MainProcess *app;
 
