@@ -9,11 +9,11 @@
 //Grid::Grid():Glib::ObjectBase("Grid"),
 //prop_ustring(){
 //}
-Grid::Grid(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder> &refGlade, MainProcess *app): Gtk::DrawingArea(cobject){
+Grid::Grid(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder> &refGlade, MainProcess *app): BaseGrid(cobject){
     this->app = app;
     generateApple();
 
-    this->snake = new Snake();
+    this->snake = new Snake(this);
 //
 //    for (int i=0; i<7; i++) {
 ////        chunks[i] = Gdk::Pixbuf::create_from_file(std::string("../assets/tiles/Tile ").append(std::to_string(i)).append(".png"));
@@ -70,7 +70,7 @@ void Grid::draw_grid(const Cairo::RefPtr<Cairo::Context>& cr) {
 
 //    cr->save();
     cr->set_source_rgb(1, 1, 1);cr->set_line_width(2.0);
-    for(int i=20; i<800; i+=20){
+    for(int i=0; i<=800; i+=20){
         cr->move_to(i,0);cr->line_to(i,800);
         cr->move_to(0,i);cr->line_to(800,i);
     }
@@ -91,25 +91,32 @@ Grid *Grid::getInstance(MainProcess *app) {
     return result;
 }
 
-bool Grid::eatApple() {
-    return false;
+bool Grid::eatApple(Coordinates pos) {
+    if((pos.x == apple.r.x) && (pos.y == apple.r.y)) {
+        generateApple();
+        return true;
+    } else {
+        return false;
+    }
 }
-
-bool Grid::generateApple() {
+// TODO: Change to directly change apple variable
+void Grid::generateApple() {
 
     std::random_device rd; // obtain a random number from hardware
     std::mt19937 gen(rd()); // seed the generator
-    std::uniform_int_distribution<> distr(1,40); // define the range
+    std::uniform_int_distribution<> distr(0,39); // define the range
     const Coordinates tmp = {
             distr(gen),
             distr(gen)
+//        30,
+//        30
     };
-    apple = {
+    this->apple = {
             tmp,
-            tmp.x*20-10,tmp.y*10+4,
-            tmp.x*20-10,tmp.y*10+16,
+            tmp.x*20+10,tmp.y*20+4,
+            tmp.x*20+10,tmp.y*20+16,
 
     };
-    return true;
+//    return locApple;
 
 }

@@ -11,11 +11,12 @@
 #include <iostream>
 #include <SnakeTile.h>
 #include <SnakeBase.h>
+#include "BaseGrid.h"
 
 class Snake: public SnakeBase {
 public:
-    Snake(int startChunks=4, Direction direction=EAST);
-    Snake(std::array<int, 2> startPos, int startChunks=4, Direction direction=EAST);
+    Snake(BaseGrid *grid, int startChunks=3, Direction direction=EAST);
+    Snake(BaseGrid *grid, std::array<int, 2> startPos, int startChunks=4, Direction direction=EAST);
     void move();
     void re_draw(const Cairo::RefPtr<Cairo::Context> &cr);
 
@@ -26,12 +27,16 @@ public:
     bool setDirection(Direction direction);
     Direction getDirection();
 
+    void grow(int size=1);
+
     void getCoords();
 
     virtual ~Snake();
+    int length;
 protected:
-
+    void eatApple();
 private:
+    BaseGrid *parent;
     Direction *getDirectPtr(Direction direction);
     Direction directions[4] = {NORTH, EAST, SOUTH, WEST};
     Direction *facing[2];

@@ -17,6 +17,7 @@ void SnakeBase::move() {
 
 }
 
+
 void SnakeBase::re_draw(const Cairo::RefPtr <Cairo::Context> &cr) {
 
 }
@@ -29,4 +30,8 @@ bool SnakeBase::setDirection(Direction direction) {
 
 Direction SnakeBase::getDirection() {
     return EAST;
+}
+
+void SnakeBase::eatApple() {
+
 }

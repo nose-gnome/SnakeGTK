@@ -24,6 +24,8 @@ public:
 
     virtual ~SnakeBase();
 
+    virtual void eatApple();
+
 };
 
 

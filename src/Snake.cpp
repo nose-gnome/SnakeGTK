@@ -4,11 +4,12 @@
 
 #include "Snake.h"
 
-Snake::Snake(int startChunks, Direction direction): Snake({4,6}, startChunks, direction){
+Snake::Snake(BaseGrid *grid, int startChunks, Direction direction): Snake(grid, {3,3}, startChunks, direction){
 
 }
 
-Snake::Snake(std::array<int, 2> startPos, int startChunks, Direction direction): SnakeBase() {
+Snake::Snake(BaseGrid *grid, std::array<int, 2> startPos, int startChunks, Direction direction): SnakeBase() {
+    this->parent = grid;
     this->facing[0]=getDirectPtr(direction);this->facing[1]=nullptr;
     lastDirection=NULL;
     for(int i=0;i<startChunks;i++){
@@ -31,6 +32,7 @@ Snake::Snake(std::array<int, 2> startPos, int startChunks, Direction direction):
         }
         occupied[i] = new SnakeTile(this, EAST, i,occupied, coords);
     }
+    length = startChunks -1;
     for(int i=startChunks;i<144;i++){
         occupied[i]=nullptr;
     }
@@ -128,3 +130,24 @@ void Snake::re_draw(const Cairo::RefPtr<Cairo::Context> &cr) {
 }
 
 Snake::~Snake(){}
+
+void Snake::grow(int size) {
+    std::array<int,2> coords = {
+            occupied[length]->pcoords[0]/20,
+            occupied[length]->pcoords[1]/20,
+
+    };
+    occupied[length+1] = new SnakeTile(this, occupied[length]->direction, length+1, occupied, coords, occupied[length]->buffer +1);
+    length ++;
+}
+
+void Snake::eatApple() {
+    Coordinates coords = {
+            occupied[0]->pcoords[0]/20,
+            occupied[0]->pcoords[1]/20
+
+    };
+    if (this->parent->eatApple(coords)) {
+        this->grow();
+    }
+}

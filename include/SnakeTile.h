@@ -22,6 +22,8 @@ public:
     Direction direction;
     Direction prevDirection;
     int pcoords[2];
+    int buffer;
+
 protected:
     int chunkNum;
 
@@ -32,7 +34,6 @@ private:
     SnakeBase *snake;
     SnakeTile **snakeTiles;
     void changeDirection(Direction direction1);
-    int buffer;
     void move(Direction direction1);
     Coordinates mod_coord(Direction direction1);
     Coordinates  mod_coord(Direction direction1, int amount);

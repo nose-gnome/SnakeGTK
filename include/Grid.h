@@ -19,22 +19,18 @@
 #include <array>
 //#include <Tile.h>
 #include <Snake.h>
+#include "BaseGrid.h"
+#include "Apple.h"
 
-struct Apple {
-    Coordinates r;
-    Coordinates p;
-    Coordinates p2;
-};
 
-class Grid: public Gtk::DrawingArea {
+class Grid: public BaseGrid {
 public:
 //    Grid();
     Grid(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder> &refGlade, MainProcess *app);
     static Grid* getInstance(MainProcess *app);
 
     void changeState();
-    bool eatApple();
-    bool generateApple();
+    bool eatApple(Coordinates pos);
 
     ~Grid();
     Snake *snake;
@@ -50,6 +46,8 @@ private:
     MainProcess *app;
 
     void draw_grid(const Cairo::RefPtr<Cairo::Context>& cr);
+    void generateApple();
+
 
 };
 

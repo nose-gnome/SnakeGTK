@@ -17,6 +17,8 @@ public:
 
     Game(_GtkWindow *pWindow, Glib::RefPtr<Gtk::Builder> refPtr);
 
+    int score = 0;
+
     void hide();
     void show();
 

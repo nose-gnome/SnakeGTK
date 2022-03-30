@@ -47,11 +47,13 @@ bool Game::on_key_press_event(GdkEventKey *event) {
 
         case GDK_KEY_slash:
             grid->snake->getCoords();
+            return false;
             break;
 
-        case GDK_KEY_comma:
-            grid->generateApple();
-            break;
+//        case GDK_KEY_comma:
+//            grid->eatApple();
+//            return false;
+//            break;
 
         default:
             return false;

@@ -53,6 +53,7 @@ void SnakeTile::move() {
         }
     } else {
         if (fractional == 10){
+            this->snake->eatApple();
             changeDirection(this->snake->getDirection());
 
         }
@@ -108,7 +109,6 @@ Coordinates SnakeTile::mod_coord(Direction direction1, int amount) {
             break;
         case SOUTH:
             out.y = pcoords[1] + amount;
-//            printf("moving South\n");
             break;
         case WEST:
             out.x = pcoords[0] - amount;
@@ -126,8 +126,8 @@ void SnakeTile::redraw(const Cairo::RefPtr<Cairo::Context> &cr) {
 //    fractional = std::modf(decCoord, &whole);
     int fractional = div(pcoords[pcoords[getCoord()]], 20).rem;
     cr->line_to(pcoords[0],pcoords[1]);
-    if ((direction != prevDirection) && fractional != 10) {
-        cr->line_to((int) (pcoords[0] / 20 * 20), (int) (pcoords[1] / 20) * 20);
+    if ((direction != prevDirection)) {
+//        cr->line_to((int) (pcoords[0] / 20 * 20), (int) (pcoords[1] / 20) * 20);
     }
 
 //        int whole[2] = {(int)(float) pcoords[0]/20, (int)(float) pcoords[1]/20, };
