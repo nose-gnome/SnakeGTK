@@ -13,19 +13,38 @@ SnakeTile::SnakeTile(SnakeBase *parent, Direction direction, int chunkNum, Snake
     this->prevDirection = direction;
     this->snakeTiles = snakeTiles;
     this->buffer = buffer;
-    for(int i=0; i < 2; i++){
-        this->coordinates[i] = coordinates[i];
-        this->pcoords[i] = (coordinates[i] * 20);
+    if (buffer >0){
+        for (int i=0; i<2; i++){
+            this->coordinates[i] = coordinates[i] /20;
+            this->pcoords[i] = coordinates[i];
+        }
+    } else {
+        for (int i = 0; i < 2; i++) {
+            this->coordinates[i] = coordinates[i];
+            this->pcoords[i] = (coordinates[i] * 20);
+        }
     }
     pcoords[1] -=10;
 }
 
 void SnakeTile::move() {
-//    return;
     double fractional = div(pcoords[getCoord()], 20).rem;
 //    float decCoord = (float) pcoords[getCoord()] /20;
 //    fractional = std::modf(decCoord, &whole);
     if (chunkNum>0) {
+        if (fractional == 10 ) {
+//                if ((nextChunk->prevDirection == direction)) {
+//                }
+            changeDirection((Direction)nextChunk->prevDirection);
+            const int check = 3;
+            if (chunkNum >= check){
+                //printf("here\n");
+            }
+            if(prevDirection!=direction){
+                //printf("\n");
+            }
+
+        }
         if(buffer>0){
 //            this->coordinates[0] = (*snakeTiles[chunkNum - 1])->coordinates[0];
 //            this->coordinates[1] = (*snakeTiles[chunkNum - 1])->coordinates[1];
@@ -34,19 +53,7 @@ void SnakeTile::move() {
         } else {
 //            if ((fractional == 0.5) && (getCoord() == nextChunk->getCoord()) && ()) changeDirection(nextChunk->direction);
 //            if (fractional == 0.4) changeDirection(nextChunk->direction);
-            if (fractional == 10 ) {
-//                if ((nextChunk->prevDirection == direction)) {
-//                }
-                changeDirection((Direction)nextChunk->prevDirection);
-                const int check = 3;
-                if (chunkNum >= check){
-                    //printf("here\n");
-                }
-                if(prevDirection!=direction){
-                    //printf("\n");
-                }
 
-            }
 
             move(this->direction);
 

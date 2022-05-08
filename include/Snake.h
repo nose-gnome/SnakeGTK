@@ -15,7 +15,7 @@
 
 class Snake: public SnakeBase {
 public:
-    Snake(BaseGrid *grid, int startChunks=3, Direction direction=EAST);
+    Snake(BaseGrid *grid, int startChunks=4, Direction direction=EAST);
     Snake(BaseGrid *grid, std::array<int, 2> startPos, int startChunks=4, Direction direction=EAST);
     void move();
     void re_draw(const Cairo::RefPtr<Cairo::Context> &cr);

@@ -16,11 +16,11 @@ class App: public MainProcess {
 public:
     explicit App();
 
-    virtual void gotoMainMenu();
-    virtual void gotoMainMenu(bool hideGame);
+    void gotoMainMenu() override;
+    void gotoMainMenu(bool hideGame) override;
 
-    virtual void gotoGame();
-    virtual void gotoGame(bool hideMenu);
+    void gotoGame() override;
+    void gotoGame(bool hideMenu) override;
 
     static Glib::RefPtr<App> create();
 

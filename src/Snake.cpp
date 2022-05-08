@@ -133,11 +133,11 @@ Snake::~Snake(){}
 
 void Snake::grow(int size) {
     std::array<int,2> coords = {
-            occupied[length]->pcoords[0]/20,
-            occupied[length]->pcoords[1]/20,
+            occupied[length]->pcoords[0],
+            occupied[length]->pcoords[1]
 
     };
-    occupied[length+1] = new SnakeTile(this, occupied[length]->direction, length+1, occupied, coords, occupied[length]->buffer +1);
+    occupied[length+1] = new SnakeTile(this, occupied[length]->direction, length+1, occupied, coords, occupied[length]->buffer +2);
     length ++;
 }
 

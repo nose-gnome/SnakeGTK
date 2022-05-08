@@ -35,6 +35,8 @@ private:
     Grid *grid;
     MainProcess *app;
 
+    bool paused = false;
+
 };
 
 

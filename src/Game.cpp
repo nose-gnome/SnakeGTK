@@ -50,6 +50,11 @@ bool Game::on_key_press_event(GdkEventKey *event) {
             return false;
             break;
 
+        case GDK_KEY_Pause:
+        case GDK_KEY_Escape:
+            this->paused = !paused;
+            return false;
+
 //        case GDK_KEY_comma:
 //            grid->eatApple();
 //            return false;
@@ -80,7 +85,7 @@ Game::Game(_GtkWindow *pWindow, Glib::RefPtr<Gtk::Builder> refPtr) {
 
 bool Game::on_timeout() {
     auto win = get_window();
-    if (visible) {
+    if (visible && !paused) {
         if (win) {}
 
         {

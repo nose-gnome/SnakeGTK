@@ -8,11 +8,13 @@ MainMenu::MainMenu(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder> &re
         : Gtk::Window(cobject) {
     this->app = app;
     app->builder->get_widget<Gtk::Button>("play", playButton);
+
 //    app->builder->get_widget("play", this->playButton);
 //    this->playButton->signal_clicked().connect(MainMenu::playButtPress(this));
 
 //    this->playButton = app->builder->get_object("play");
     playButton->signal_clicked().connect(sigc::mem_fun(this, &MainMenu::playButtPress));
+
 
 }
 
