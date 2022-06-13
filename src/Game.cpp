@@ -55,6 +55,11 @@ bool Game::on_key_press_event(GdkEventKey *event) {
             this->paused = !paused;
             return false;
 
+        case GDK_KEY_Delete:
+        case GDK_KEY_F3:
+            this->app->gotoMainMenu();
+            this->paused = true;
+            return false;
 //        case GDK_KEY_comma:
 //            grid->eatApple();
 //            return false;

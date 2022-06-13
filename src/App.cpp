@@ -4,8 +4,8 @@
 
 #include "../include/App.h"
 App::App() {
-//    this->mainMenu = MainMenu::getInstance(this);
-//    this->game = Game::getInstance(this);
+    this->mainMenu = MainMenu::getInstance(this);
+    this->game = Game::getInstance(this);
     gotoMainMenu(false);
     run(*mainMenu);
 //    this->mainMenu->show();
@@ -13,11 +13,10 @@ App::App() {
 
 void App::gotoMainMenu() {gotoMainMenu(true);}
 void App::gotoMainMenu(bool hideGame) {
-    this->mainMenu = MainMenu::getInstance(this);
     if(hideGame){
         this->hold();
         this->game->hide();
-        this->remove_window(*mainMenu);
+        this->remove_window(*game);
         this->add_window(*mainMenu);
         this->release();
     }
@@ -27,13 +26,12 @@ void App::gotoMainMenu(bool hideGame) {
 
 void App::gotoGame() {gotoGame(true);}
 void App::gotoGame(bool hideMenu) {
-    this->game = Game::getInstance(this);
 
 
     if(hideMenu){
         this->hold();
         this->mainMenu->hide();
-        this->remove_window(*game);
+        this->remove_window(*mainMenu);
         delete mainMenu;
         this->add_window(*game);
         release();
