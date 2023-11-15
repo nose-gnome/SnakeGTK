@@ -56,7 +56,7 @@ void Snake::getCoords() {
 
 bool Snake::setDirection(Direction direction){
     Direction *directionPtr = getDirectPtr(direction);
-    std::cout << direction << std::endl;
+//    std::cout << direction << std::endl;
 
     if ((this->lastDirection == directionPtr) || (this->lastDirection == getDirectPtr((Direction)((int)direction*-1)))) {
         return false;
@@ -141,9 +141,9 @@ void Snake::grow(int size) {
             occupied[length]->pcoords[1]
 
     };
-    this->getCoords();
+//    this->getCoords();
 
-    std::cout << parent->convertCoordinate(coords[0]) << ", " << parent->convertCoordinate(coords[1]) << std::endl;
+//    std::cout << parent->convertCoordinate(coords[0]) << ", " << parent->convertCoordinate(coords[1]) << std::endl;
     occupied[length+1] = new SnakeTile(this, occupied[length]->direction, length+1, occupied, coords, occupied[length]->buffer +2);
     length ++;
 }
