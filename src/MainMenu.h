@@ -7,7 +7,7 @@
 #define SNAKEGTK_MAINMENU_H
 #include <gtkmm.h>
 
-#include <MainProcess.h>
+#include "MainProcess.h"
 #include <iostream>
 
 class MainMenu: public Gtk::Window{

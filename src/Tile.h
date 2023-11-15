@@ -6,20 +6,21 @@
 #define SNAKEGTK_TILE_H
 #include <gtkmm/drawingarea.h>
 #include <gtkmm/builder.h>
-#include <cairo/cairo.h>
+#include <cairo.h>
 
-class Tile: public Gtk::DrawingArea {
+class Tile {
 public:
-    Tile(int x, int y);
+    Tile(Cairo::RefPtr<Cairo::Context>& cr, int x, int y);
 
     int x;
     int y;
 
     void swapTile(int tile);
 protected:
-    virtual bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr);
+//    virtual bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr);
 private:
     Cairo::RefPtr<Cairo::Context> cr;
+    int locX;int locY;
 //    const Glib::RefPtr<Gdk::Pixbuf> *chunks;
 
 //    Glib::RefPtr<Gdk::Pixbuf> get_chunk(int chunk);
