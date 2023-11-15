@@ -18,27 +18,31 @@ SnakeTile::SnakeTile(SnakeBase *parent, Direction direction, int chunkNum, Snake
             this->coordinates[i] = coordinates[i] /20;
             this->pcoords[i] = coordinates[i];
         }
+        switch (direction) {
+            case NORTH:
+                pcoords[1] +=10;
+                break;
+            case SOUTH:
+                pcoords[1] -=10;
+                break;
+            case EAST:
+                pcoords[0] -=10;
+                break;
+            case WEST:
+                pcoords[0] +=10;
+                break;
+        }
     } else {
         for (int i = 0; i < 2; i++) {
             this->coordinates[i] = coordinates[i];
             this->pcoords[i] = (coordinates[i] * 20);
 
         }
+        this->pcoords[1] -=10;
+
+
     }
-    switch (direction) {
-        case NORTH:
-            pcoords[1] +=10;
-            break;
-        case SOUTH:
-            pcoords[1] -=10;
-            break;
-        case EAST:
-            pcoords[0] -=10;
-            break;
-        case WEST:
-            pcoords[0] +=10;
-            break;
-    }
+
 }
 
 void SnakeTile::move() {
