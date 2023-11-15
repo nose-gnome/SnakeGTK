@@ -15,6 +15,9 @@ class BaseGrid: public Gtk::DrawingArea {
 //    BaseGrid(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder> &refGlade, MainProcess *app);
 public:
     BaseGrid(BaseObjectType *cobject);
+    std::array<int,2> convertCoordinates(std::array<int,2> values);
+    int convertCoordinate(int value);
+
 
     virtual bool eatApple(Coordinates pos);
 

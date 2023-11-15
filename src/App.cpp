@@ -2,7 +2,7 @@
 // Created by blyth on 06/02/2022.
 //
 
-#include "../include/App.h"
+#include "App.h"
 App::App() {
     this->mainMenu = MainMenu::getInstance(this);
     this->game = Game::getInstance(this);

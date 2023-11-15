@@ -6,16 +6,17 @@
 #ifndef SNAKEGTK_GAME_H
 #define SNAKEGTK_GAME_H
 
-#include <MainProcess.h>
+#include "MainProcess.h"
 #include <gtkmm.h>
-#include <Grid.h>
-#include <Direction.h>
+#include "Grid.h"
+#include "Direction.h"
 
 class Game: public Gtk::Window {
 public:
     Game(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refGlade, MainProcess * app);
 
     Game(_GtkWindow *pWindow, Glib::RefPtr<Gtk::Builder> refPtr);
+    ~Game();
 
     int score = 0;
 
@@ -23,8 +24,6 @@ public:
     void show();
 
     static Game * getInstance(MainProcess *app);
-
-    virtual ~Game();
 
 
 private:

@@ -25,10 +25,12 @@ Snake::Snake(BaseGrid *grid, std::array<int, 2> startPos, int startChunks, Direc
                 coords[1]=startPos[1];
                 break;
             case SOUTH:
-                coords[0]=startPos[0];coords[1]=startPos[1]+i;
+                coords[0]=startPos[0];
+                coords[1]=startPos[1]+i;
                 break;
             case WEST:
-                coords[0]=startPos[0]+1;coords[i]=startPos[1];
+                coords[0]=startPos[0]+i;
+                coords[i]=startPos[1];
         }
         occupied[i] = new SnakeTile(this, EAST, i,occupied, coords);
     }
@@ -44,7 +46,9 @@ void Snake::getCoords() {
 //    return;
     printf("--------\n");
     for(int i=0;occupied[i]!= nullptr;i++){
-        printf("[%d, %d]\n",div(occupied[i]->pcoords[0], 20).quot, div(occupied[i]->pcoords[1], 20).quot);
+        const std::array<int, 2> &coords = occupied[i]->getCoordinates();
+//        printf("[%d, %d]\n",div(occupied[i]->pcoords[0], 20).quot, div(occupied[i]->pcoords[1], 20).quot);
+        printf("[%d, %d]\n",coords[0], coords[1]);
     }
 
     return;
@@ -137,8 +141,16 @@ void Snake::grow(int size) {
             occupied[length]->pcoords[1]
 
     };
+    this->getCoords();
+
+    std::cout << parent->convertCoordinate(coords[0]) << ", " << parent->convertCoordinate(coords[1]) << std::endl;
     occupied[length+1] = new SnakeTile(this, occupied[length]->direction, length+1, occupied, coords, occupied[length]->buffer +2);
     length ++;
+}
+void Snake::shrink(int size)
+{
+    occupied[length] = NULL;
+    length --;
 }
 
 void Snake::eatApple() {
@@ -151,3 +163,4 @@ void Snake::eatApple() {
         this->grow();
     }
 }
+

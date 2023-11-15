@@ -1,7 +1,7 @@
 //
 // Created by blyth on 14/02/2022.
 //
-#include <Game.h>
+#include "Game.h"
 
 Game::Game(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder> &refGlade, MainProcess *app): Gtk::Window(cobject) {
 //    this->signal_key_press_event().connect(sigc::mem_fun(*this, &Game::on_key_press));
@@ -60,10 +60,19 @@ bool Game::on_key_press_event(GdkEventKey *event) {
             this->app->gotoMainMenu();
             this->paused = true;
             return false;
-//        case GDK_KEY_comma:
-//            grid->eatApple();
-//            return false;
-//            break;
+        case GDK_KEY_comma:
+            grid->snake->grow();
+            return false;
+            break;
+        case GDK_KEY_period:
+            grid->snake->shrink();
+            return false;
+        case GDK_KEY_m:
+            std::cout << "Head:" << grid->snake->head << std::endl;
+            std::cout << "Tail:" << grid->snake->tail << std::endl;
+            return false;
+
+
 
         default:
             return false;
@@ -102,4 +111,6 @@ bool Game::on_timeout() {
     }
     return true;
 }
+
+
 

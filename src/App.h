@@ -8,9 +8,9 @@
 
 #include <iostream>
 #include <gtkmm.h>
-#include <MainMenu.h>
-#include <MainProcess.h>
-#include <Game.h>
+#include "MainMenu.h"
+#include "MainProcess.h"
+#include "Game.h"
 
 class App: public MainProcess {
 public:

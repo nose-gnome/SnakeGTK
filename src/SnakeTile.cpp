@@ -13,7 +13,7 @@ SnakeTile::SnakeTile(SnakeBase *parent, Direction direction, int chunkNum, Snake
     this->prevDirection = direction;
     this->snakeTiles = snakeTiles;
     this->buffer = buffer;
-    if (buffer >0){
+    if (this->buffer >0){
         for (int i=0; i<2; i++){
             this->coordinates[i] = coordinates[i] /20;
             this->pcoords[i] = coordinates[i];
@@ -22,9 +22,23 @@ SnakeTile::SnakeTile(SnakeBase *parent, Direction direction, int chunkNum, Snake
         for (int i = 0; i < 2; i++) {
             this->coordinates[i] = coordinates[i];
             this->pcoords[i] = (coordinates[i] * 20);
+
         }
     }
-    pcoords[1] -=10;
+    switch (direction) {
+        case NORTH:
+            pcoords[1] +=10;
+            break;
+        case SOUTH:
+            pcoords[1] -=10;
+            break;
+        case EAST:
+            pcoords[0] -=10;
+            break;
+        case WEST:
+            pcoords[0] +=10;
+            break;
+    }
 }
 
 void SnakeTile::move() {
@@ -78,7 +92,9 @@ void SnakeTile::changeDirection(Direction direction1) {
     this->direction = direction1;
 }
 
-int SnakeTile::getCoord() {getCoord(direction);}
+int SnakeTile::getCoord() {
+    return getCoord(direction);
+}
 int SnakeTile::getCoord(Direction direction1){
     int out;
     switch(direction1){
@@ -147,4 +163,9 @@ void SnakeTile::redraw(const Cairo::RefPtr<Cairo::Context> &cr) {
 //    const int *mod = mod_coord(direction, -19);
 //    std::cout << *mod << "|" << *(mod+1) << std::endl;
 //    cr->line_to(*mod, *(mod+1));
+}
+
+std::array<int,2> SnakeTile::getCoordinates()
+{
+    return {div(pcoords[0], 20).quot, div(pcoords[1], 20).quot};
 }

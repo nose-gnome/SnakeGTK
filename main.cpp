@@ -9,7 +9,7 @@
 
 #include <math.h>
 #include <ctype.h>
-#include <App.h>
+#include "src/App.h"
 //GtkWidget *window;
 GtkBuilder *builder;
 

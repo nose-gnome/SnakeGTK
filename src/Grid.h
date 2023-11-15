@@ -8,17 +8,17 @@
 #define SNAKEGTK_GRID_H
 
 
-#include <MainProcess.h>
+#include "MainProcess.h"
 #include <gdkmm/general.h>
 #include <glibmm/fileutils.h>
 #include <cairomm/context.h>
 #include <giomm/resource.h>
 #include <stdlib.h>
-#include <Coordinates.h>
+#include "Coordinates.h"
 
 #include <array>
 //#include <Tile.h>
-#include <Snake.h>
+#include "Snake.h"
 #include "BaseGrid.h"
 #include "Apple.h"
 

@@ -4,13 +4,13 @@
 
 #ifndef SNAKEGTK_SNAKETILE_H
 #define SNAKEGTK_SNAKETILE_H
-#include <Direction.h>
+#include "Direction.h"
 #include <array>
-#include <SnakeBase.h>
+#include "SnakeBase.h"
 #include <iostream>
 #include <cstdlib>
 #include <limits>
-#include <Coordinates.h>
+#include "Coordinates.h"
 
 class SnakeTile {
 public:
@@ -23,6 +23,7 @@ public:
     Direction prevDirection;
     int pcoords[2];
     int buffer;
+    std::array<int,2> getCoordinates();
 
 protected:
     int chunkNum;

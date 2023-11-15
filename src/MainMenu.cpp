@@ -2,7 +2,7 @@
 // Created by blyth on 06/02/2022.
 //
 
-#include "../include/MainMenu.h"
+#include "MainMenu.h"
 
 MainMenu::MainMenu(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder> &refGlade, MainProcess * app)
         : Gtk::Window(cobject) {

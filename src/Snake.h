@@ -5,12 +5,12 @@
 
 #ifndef SNAKEGTK_SNAKE_H
 #define SNAKEGTK_SNAKE_H
-#include <Tile.h>
+#include "Tile.h"
 #include <iostream>
-#include <Direction.h>
+#include "Direction.h"
 #include <iostream>
-#include <SnakeTile.h>
-#include <SnakeBase.h>
+#include "SnakeTile.h"
+#include "SnakeBase.h"
 #include "BaseGrid.h"
 
 class Snake: public SnakeBase {
@@ -28,6 +28,7 @@ public:
     Direction getDirection();
 
     void grow(int size=1);
+    void shrink(int size=1);
 
     void getCoords();
 

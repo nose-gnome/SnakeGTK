@@ -2,7 +2,7 @@
 // Created by blyth on 07/02/2022.
 //
 
-#include <MainProcess.h>
+#include "MainProcess.h"
 #include <gtkmm.h>
 #include <iostream>
 
