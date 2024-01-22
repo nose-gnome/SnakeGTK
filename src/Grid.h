@@ -26,7 +26,7 @@
 class Grid: public BaseGrid {
 public:
 //    Grid();
-    Grid(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder> &refGlade, MainProcess *app);
+    Grid(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder> &refGlade, MainProcess *app, unsigned short width=40, unsigned short height=40, unsigned short gap=20);
     static Grid* getInstance(MainProcess *app);
 
     void changeState();
@@ -44,6 +44,7 @@ private:
     void draw_apple(const Cairo::RefPtr<Cairo::Context>& cr);
     Tile * tiles[12][12];
     MainProcess *app;
+
 
     void draw_grid(const Cairo::RefPtr<Cairo::Context>& cr);
     void generateApple();

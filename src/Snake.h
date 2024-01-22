@@ -30,7 +30,11 @@ public:
     void grow(int size=1);
     void shrink(int size=1);
 
+    bool next_safe();
+
     void getCoords();
+
+
 
     virtual ~Snake();
     int length;
@@ -43,6 +47,10 @@ private:
     Direction *facing[2];
     Direction *lastDirection;
     static int  * get_array();
+    unsigned short death_buffer = 0;
+    const unsigned short MAX_DEAH_TBUFFER = 3;
+
+    bool check_body();
 //    Snake(Direction direction, const int startPos[2], int startChunks);
     int state;
     Tile *(*tiles)[12][12];

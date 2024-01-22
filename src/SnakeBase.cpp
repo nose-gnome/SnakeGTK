@@ -35,3 +35,6 @@ Direction SnakeBase::getDirection() {
 void SnakeBase::eatApple() {
 
 }
+
+bool SnakeBase::next_safe() {
+}

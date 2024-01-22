@@ -46,9 +46,9 @@ void Snake::getCoords() {
 //    return;
     printf("--------\n");
     for(int i=0;occupied[i]!= nullptr;i++){
-        const std::array<int, 2> &coords = occupied[i]->getCoordinates();
+        const Coordinates coords = occupied[i]->getCoordinates();
 //        printf("[%d, %d]\n",div(occupied[i]->pcoords[0], 20).quot, div(occupied[i]->pcoords[1], 20).quot);
-        printf("[%d, %d]\n",coords[0], coords[1]);
+        printf("[%d, %d]\n",coords.x, coords.y);
     }
 
     return;
@@ -164,3 +164,57 @@ void Snake::eatApple() {
     }
 }
 
+bool Snake::next_safe() {
+    bool safe = true;
+    Coordinates coords = occupied[0]->getCoordinates();
+    Direction direction = occupied[0]->direction;
+
+    switch (direction) {
+        case NORTH:
+            if (coords.y<=0) {
+                safe = false;
+            } else {
+                coords.y--;
+            }
+            break;
+        case EAST:
+            if (coords.x>=(this->parent->get_width()-1)) {
+                safe = false;
+            } else {
+                coords.x ++;
+            }
+            break;
+        case SOUTH:
+            if (coords.y >= (this->parent->get_height()-1)) {
+                safe = false;
+            } else {
+                coords.y++;
+            }
+
+            break;
+        case WEST:
+            if (coords.x<=0) {
+                safe = false;
+            } else {
+                coords.x --;
+            }
+
+            break;
+    }
+    if (safe) {
+        for(int i=1;occupied[i]!=nullptr;i++) {
+            Coordinates coords2 = occupied[i]->getCoordinates();
+            if ((coords2.x == coords.x) && (coords2.y== coords.y)) {
+                safe = false;
+                break;
+            }
+        }
+    }
+
+    moving = safe;
+    return safe;
+}
+
+bool Snake::check_body() {
+    return false;
+}

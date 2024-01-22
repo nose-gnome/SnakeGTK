@@ -47,9 +47,14 @@ SnakeTile::SnakeTile(SnakeBase *parent, Direction direction, int chunkNum, Snake
 
 void SnakeTile::move() {
     double fractional = div(pcoords[getCoord()], 20).rem;
+    bool do_move = true;
 //    float decCoord = (float) pcoords[getCoord()] /20;
 //    fractional = std::modf(decCoord, &whole);
     if (chunkNum>0) {
+        if  (!this->snake->moving) {
+            return;
+        }
+
         if (fractional == 10 ) {
 //                if ((nextChunk->prevDirection == direction)) {
 //                }
@@ -80,11 +85,16 @@ void SnakeTile::move() {
         if (fractional == 10){
             this->snake->eatApple();
             changeDirection(this->snake->getDirection());
+            if (!this->snake->next_safe()){
+                do_move=false;
+            }
 
         }
 
         //            std::cout << fractional << std::endl;
-        move(this->direction);
+        if (do_move) {
+            move(this->direction);
+        }
     }
 }
 
@@ -169,7 +179,7 @@ void SnakeTile::redraw(const Cairo::RefPtr<Cairo::Context> &cr) {
 //    cr->line_to(*mod, *(mod+1));
 }
 
-std::array<int,2> SnakeTile::getCoordinates()
+Coordinates SnakeTile::getCoordinates()
 {
     return {div(pcoords[0], 20).quot, div(pcoords[1], 20).quot};
 }

@@ -23,10 +23,11 @@ public:
     Direction prevDirection;
     int pcoords[2];
     int buffer;
-    std::array<int,2> getCoordinates();
+   Coordinates getCoordinates();
 
 protected:
     int chunkNum;
+    bool moving = true;
 
 private:
     int getCoord();

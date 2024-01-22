@@ -20,7 +20,11 @@ public:
 
     virtual bool setDirection(Direction direction);
 
+    bool moving = true;
+
     virtual Direction getDirection();
+
+    virtual bool next_safe();
 
     virtual ~SnakeBase();
 

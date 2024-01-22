@@ -9,8 +9,9 @@
 //Grid::Grid():Glib::ObjectBase("Grid"),
 //prop_ustring(){
 //}
-Grid::Grid(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder> &refGlade, MainProcess *app): BaseGrid(cobject){
+Grid::Grid(BaseObjectType *cobject, const Glib::RefPtr<Gtk::Builder> &refGlade, MainProcess *app, unsigned short width, unsigned short height, unsigned short gap): BaseGrid(cobject){
     this->app = app;
+
     generateApple();
 
     this->snake = new Snake(this);
@@ -70,9 +71,9 @@ void Grid::draw_grid(const Cairo::RefPtr<Cairo::Context>& cr) {
 
 //    cr->save();
     cr->set_source_rgb(1, 1, 1);cr->set_line_width(2.0);
-    for(int i=0; i<=800; i+=20){
-        cr->move_to(i,0);cr->line_to(i,800);
-        cr->move_to(0,i);cr->line_to(800,i);
+    for(int i=0; i<=max_xpixels; i+=gap){
+        cr->move_to(i,0);cr->line_to(i,max_ypixels);
+        cr->move_to(0,i);cr->line_to(max_xpixels,i);
     }
     cr->stroke();
     cr->restore();

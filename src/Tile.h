@@ -15,6 +15,7 @@ public:
     int x;
     int y;
 
+
     void swapTile(int tile);
 protected:
 //    virtual bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr);
